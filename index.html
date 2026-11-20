@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أكاديمية المحاسبة المالية - من الصفر حتى الاحتراف | تصميم: zaki zika</title>
+
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'Tajawal', 'system-ui', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+          },
+          colors: {
+            navy: {
+              800: '#1e293b',
+              900: '#0f172a',
+              950: '#080d1a'
+            },
+            emerald: {
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669'
+            },
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom scrollbar & keycap polish */
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(16, 185, 129, 0.6);
+    }
+
+    kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.8rem;
+      padding: 0.15rem 0.45rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 0.45rem;
+      border: 1px solid #cbd5e1;
+      border-bottom-width: 3px;
+      background: #f8fafc;
+      color: #0f172a;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+    .dark kbd {
+      border-color: #475569;
+      background: #1e293b;
+      color: #f8fafc;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeInSlide 0.3s ease-out forwards;
+    }
+
+    /* Print styling strictly for the completion certificate */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #certificate-print-area,
+      #certificate-print-area * {
+        visibility: visible !important;
+      }
+      #certificate-print-area {
+        position: fixed !important;
+        inset: 0 !important;
+        margin: 0 !important;
+        padding: 2rem !important;
+        width: 100% !important;
+        height: auto !important;
+        box-shadow: none !important;
+        border: 8px double #0f172a !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-navy-950 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col selection:bg-emerald-500/20 selection:text-emerald-700 dark:selection:text-emerald-300">
+
+  <!-- ==================== TOP NAVIGATION BAR ==================== -->
+  <header class="sticky top-0 z-40 bg-navy-900/95 backdrop-blur-md text-white border-b border-slate-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20 gap-2">
+
+        <!-- Brand + Mobile Menu Button -->
+        <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+          <button id="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="قائمة المستويات" class="lg:hidden p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          <div onclick="switchView('curriculum')" class="flex items-center gap-2.5 cursor-pointer group min-w-0">
+            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center shadow-lg shadow-emerald-500/20 shrink-0 group-hover:scale-105 transition">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div class="truncate">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h1 class="text-sm sm:text-lg font-extrabold tracking-tight text-white truncate">أكاديمية المحاسبة المالية</h1>
+                <span class="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-gold-500/20 text-gold-400 border border-gold-500/30">
+                  تصميم: zaki zika
+                </span>
+              </div>
+              <p class="text-[11px] sm:text-xs text-slate-400 truncate">من الصفر حتى الاحتراف التطبيقي</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center/Right Actions -->
+        <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          <!-- View Switcher: Curriculum vs Mock Exam -->
+          <button id="nav-curriculum-btn" onclick="switchView('curriculum')" class="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-sm transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            المسار التعليمي
+          </button>
+
+          <button id="nav-exam-btn" onclick="switchView('exam')" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-800 hover:bg-slate-700 text-gold-400 border border-gold-500/30 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span class="hidden sm:inline">الاختبار الشامل</span>
+            <span class="sm:hidden">الاختبار</span>
+          </button>
+
+          <!-- Dedicated Prominent Excel Hub Button -->
+          <button onclick="openExcelHub()" title="معادلات الإكسل واختصارات لوحة المفاتيح" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-[#1D6F42] hover:bg-[#155a34] text-white border border-emerald-400/40 shadow-md shadow-emerald-900/40 transition transform hover:-translate-y-0.5">
+            <!-- Authentic Excel X Badge Icon -->
+            <span class="w-5 h-5 rounded bg-white text-[#1D6F42] font-black text-xs flex items-center justify-center shadow-inner">X</span>
+            <span class="hidden sm:inline">معادلات الإكسل</span>
+            <span class="sm:hidden">إكسل</span>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle-btn" onclick="toggleTheme()" aria-label="تبديل الوضع الليلي" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+            <svg id="icon-sun" class="w-5 h-5 hidden text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg id="icon-moon" class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Overall Mastery Progress Bar -->
+      <div class="pb-2.5 flex items-center gap-3">
+        <div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+          <div id="global-progress-bar" class="h-full bg-gradient-to-l from-emerald-400 via-emerald-500 to-gold-400 rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+        <div class="text-[11px] sm:text-xs font-bold text-emerald-400 shrink-0 flex items-center gap-1.5">
+          <span>الإنجاز الكلي:</span>
+          <span id="global-progress-text" class="bg-slate-800 px-2 py-0.5 rounded-md text-white">0%</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN WORKSPACE ==================== -->
+  <div class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6">
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
+
+      <!-- SIDEBAR: 6-LEVEL STEPPER (Desktop Sticky + Mobile Drawer) -->
+      <div id="mobile-sidebar-backdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-40 hidden lg:hidden"></div>
+      <aside id="sidebar-panel" class="fixed lg:sticky top-0 lg:top-28 right-0 z-50 lg:z-30 h-full lg:h-auto w-80 max-w-[85vw] lg:w-80 bg-white dark:bg-navy-900 lg:bg-transparent lg:dark:bg-transparent p-5 lg:p-0 overflow-y-auto lg:overflow-visible transform translate-x-full lg:translate-x-0 transition-transform duration-300 shadow-2xl lg:shadow-none shrink-0">
+        <div class="lg:bg-white lg:dark:bg-navy-900 lg:border lg:border-slate-200 lg:dark:border-slate-800 lg:rounded-2xl lg:p-4 lg:shadow-sm">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-200 dark:border-slate-800">
+            <div>
+              <h2 class="text-base font-extrabold text-navy-900 dark:text-white">خارطة التعلم المتدرجة</h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">6 مستويات من الصفر للاحتراف</p>
+            </div>
+            <button onclick="toggleMobileSidebar()" class="lg:hidden p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+
+          <!-- Level Stepper List -->
+          <nav id="level-stepper" class="space-y-2"></nav>
+
+          <!-- Quick Action Cards inside Sidebar -->
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2.5">
+            <button onclick="switchView('exam'); closeMobileSidebar();" class="w-full flex items-center justify-between p-3 rounded-xl bg-gradient-to-l from-navy-900 to-slate-800 dark:from-slate-800 dark:to-navy-950 text-white border border-gold-500/30 hover:border-gold-400 transition group">
+              <div class="flex items-center gap-2.5 text-right">
+                <span class="w-8 h-8 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold">🏆</span>
+                <div>
+                  <div class="text-xs font-extrabold">الاختبار المحاكي الشامل</div>
+                  <div class="text-[11px] text-slate-400">15 سؤالاً + شهادة إتمام</div>
+                </div>
+              </div>
+              <svg class="w-4 h-4 text-gold-400 group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            <button onclick="openExcelHub(); closeMobileSidebar();" class="w-full flex items-center justify-between p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition group">
+              <div class="flex items-center gap-2.5 text-right">
+                <span class="w-8 h-8 rounded-lg bg-[#1D6F42] text-white font-black flex items-center justify-center text-sm">X</span>
+                <div>
+                  <div class="text-xs font-extrabold">دليل الإكسل المحاسبي</div>
+                  <div class="text-[11px] text-emerald-700 dark:text-emerald-400">15 معادلة + 28 اختصاراً</div>
+                </div>
+              </div>
+              <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400 group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT AREA -->
+      <main class="flex-1 min-w-0 w-full">
+        <!-- View 1: Curriculum Level Container -->
+        <section id="curriculum-view" class="space-y-6 animate-fade-in"></section>
+
+        <!-- View 2: Comprehensive Mock Exam Simulator -->
+        <section id="exam-view" class="hidden space-y-6 animate-fade-in"></section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ==================== FLOATING EXCEL QUICK-ACCESS BUTTON ==================== -->
+  <button onclick="openExcelHub()" title="معادلات الإكسل واختصارات لوحة المفاتيح" class="fixed bottom-5 left-5 z-40 flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#1D6F42] hover:bg-[#155a34] text-white shadow-xl shadow-emerald-900/40 border-2 border-emerald-400/50 transition transform hover:scale-105 active:scale-95 no-print">
+    <span class="w-7 h-7 rounded-lg bg-white text-[#1D6F42] font-black text-base flex items-center justify-center shadow">X</span>
+    <span class="font-extrabold text-sm hidden sm:inline">معادلات واختصارات الإكسل</span>
+  </button>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="mt-12 bg-navy-900 text-slate-300 border-t border-slate-800 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-center sm:text-right">
+        <div class="text-sm font-extrabold text-white">أكاديمية المحاسبة المالية - من الصفر حتى الاحتراف</div>
+        <div class="text-xs text-slate-400 mt-0.5">منصة تعليمية تفاعلية متكاملة للشرح، التطبيق، المحاكاة، وإتقان الإكسل المحاسبي.</div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="px-3.5 py-1.5 rounded-xl bg-gold-500/15 border border-gold-500/30 text-gold-400 text-xs font-extrabold">
+          ✨ تصميم: zaki zika
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== YOUTUBE VIDEO PLAYER MODAL ==================== -->
+  <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-700 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-4 sm:px-6 py-4 bg-navy-900 text-white border-b border-slate-800">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6zm11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+          </span>
+          <div class="truncate">
+            <h3 id="video-modal-title" class="text-sm sm:text-base font-extrabold truncate">الشرح بالفيديو</h3>
+            <p id="video-modal-channel" class="text-xs text-slate-400 truncate">يفتح مباشرة داخل الأكاديمية</p>
+          </div>
+        </div>
+        <button onclick="closeVideoModal()" class="p-2 rounded-xl bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <!-- Video Iframe Container (16:9) -->
+      <div class="relative w-full bg-black aspect-video">
+        <iframe id="youtube-iframe" class="absolute inset-0 w-full h-full" src="" title="فيديو تعليمي للمحاسبة المالية" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+
+      <!-- Alternative Video Switcher & Custom YouTube Link Input -->
+      <div class="p-4 bg-slate-50 dark:bg-navy-950 border-t border-slate-200 dark:border-slate-800 space-y-3 overflow-y-auto">
+        <div id="video-switcher-list" class="flex flex-wrap gap-2"></div>
+
+        <div class="flex flex-col sm:flex-row gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+          <input id="custom-youtube-input" type="text" placeholder="أو الصق أي رابط يوتيوب آخر لتشغيله مباشرة داخل الموقع..." class="flex-1 px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-white dark:bg-navy-900 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+          <button onclick="playCustomYouTubeUrl()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shrink-0 transition">
+            تشغيل الرابط
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== EXCEL FORMULAS & SHORTCUTS HUB MODAL ==================== -->
+  <div id="excel-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-2 sm:p-5 bg-slate-950/75 backdrop-blur-sm">
+    <div class="bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-700 rounded-2xl w-full max-w-5xl max-h-[92vh] shadow-2xl flex flex-col overflow-hidden">
+      <!-- Header -->
+      <div class="px-5 py-4 bg-gradient-to-l from-[#1D6F42] to-[#145331] text-white flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white text-[#1D6F42] font-black text-xl flex items-center justify-center shadow">X</div>
+          <div>
+            <h2 class="text-base sm:text-lg font-extrabold">مركز الإكسل المحاسبي الاحترافي</h2>
+            <p class="text-xs text-emerald-100">أهم معادلات المحاسبة المالية واختصارات لوحة المفاتيح مع النسخ الفوري</p>
+          </div>
+        </div>
+        <button onclick="closeExcelHub()" class="p-2 rounded-xl bg-black/20 hover:bg-black/40 text-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 
+            
+    // Close modals with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeVideoModal();
+        closeExcelHub();
+        closeMobileSidebar();
+      }
+    });
+
+    // Initialize Application
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      updateGlobalProgress();
+      switchView(appState.currentView || 'curriculum');
+    });
+  </script>
+</body>
+</html>
